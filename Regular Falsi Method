@@ -1,0 +1,35 @@
+/*Regular Falsi Method
+find the root of the eqution x^3-5x+1=0 correct up to 3 decimal places using regula falsi method.*/
+#include<stdio.h>
+#include<math.h>
+float f(float x)
+{
+	return(x*x*x-5*x+1);
+}
+int main()
+{
+	float e,a,b,c;
+	int k=0;
+	printf("enter accuracy:");
+	scanf("%f",&e);
+	do
+	{
+		printf("\n Enter the entervals:");
+		scanf("%f %f",&a,&b);
+	}
+	while(f(a)*f(b)>0.0);
+	do
+	{
+		c=b-((f(b)*(b-a))/(f(b)-f(a)));
+		printf("k=%d \t a=%f\t b=%f\t c=%f\t f(c)=%f\n",k,a,b,c,f(c));
+		if(f(a)*f(b)<0.0)
+		b=c;
+		else
+		a=c;
+		k=k+1;
+	}
+	while(fabs (f(c))>e);
+	printf("\n Root of the equation is %f",c);
+	printf("\n No of iteration is %d",k);
+	return 0;
+}
